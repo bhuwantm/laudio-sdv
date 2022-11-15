@@ -133,11 +133,11 @@ dmypy.json
 .vscode
 sdv_demo
 
-data/input_csv
+data/input_csv/*
 !data/input_csv/.gitkeep
 
-data/output_csv
+data/output_csv/*
 !data/output_csv/.gitkeep
 
-data/meta
+data/meta/*
 !data/meta/.gitkeep
