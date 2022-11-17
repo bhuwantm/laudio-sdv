@@ -1,9 +1,10 @@
 import os
 
 import pandas as pd
+import sdv
 from sdv import Metadata
 
-from config import INPUT_CSV_PATH, META_PATH
+from config import INPUT_CSV_PATH
 from core.base_sdv import BaseSDV
 
 
@@ -14,12 +15,12 @@ class EmployeesSDV(BaseSDV):
         super(EmployeesSDV, self).__init__(metadata)
         self.input_file = os.path.join(INPUT_CSV_PATH, 'employees.csv')
 
-    def _get_df_csv(self):
+    def _get_df_csv(self) -> pd.DataFrame:
         df = pd.read_csv(self.input_file)
         return df
 
     @staticmethod
-    def _get_fields_metadata():
+    def _get_fields_metadata() -> dict:
         fields_metadata = {
             'join_date': {
                 'type': 'datetime',
@@ -29,19 +30,19 @@ class EmployeesSDV(BaseSDV):
                 'type': 'datetime',
                 'format': '%Y-%m-%d'
             },
-            'termination_date': {
+            "termination_date": {
                 'type': 'datetime',
                 'format': '%Y-%m-%d'
             },
-            'first_name': {
+            "first_name": {
                 'type': 'categorical',
                 'pii': True,
                 'pii_category': 'first_name'
             },
-            'middle_name': {
+            "middle_name": {
                 'type': 'categorical',
             },
-            'last_name': {
+            "last_name": {
                 'type': 'categorical',
                 'pii': True,
                 'pii_category': 'last_name'
@@ -111,13 +112,13 @@ class EmployeesSDV(BaseSDV):
         }
         return fields_metadata
 
-    def get_df_and_metadata(self):
+    def get_df_and_metadata(self) -> [pd.DataFrame, sdv.Metadata]:
         df = self._get_df_csv()
         self.metadata.add_table(
             name=self.TABLE_NAME,
             data=df,
             primary_key='id',
-            fields_metadata=self._get_fields_metadata()
+            fields_metadata=self._get_fields_metadata(),
         )
 
         return df, self.metadata

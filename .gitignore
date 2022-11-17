@@ -131,7 +131,6 @@ dmypy.json
 
 .idea
 .vscode
-sdv_demo
 
 data/input_csv/*
 !data/input_csv/.gitkeep
@@ -141,3 +140,9 @@ data/output_csv/*
 
 data/meta/*
 !data/meta/.gitkeep
+
+sdv_demo/output_csv/*
+!sdv_demo/output_csv/.gitkeep
+
+sdv_demo/output_meta/*
+!sdv_demo/output_meta/.gitkeep

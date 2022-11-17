@@ -4,6 +4,10 @@ import config
 
 
 def get_connection() -> pyodbc.Connection:
+    """
+    generates connection instance using database configuration
+    :return: pyodbc connection instance
+    """
     driver_str = f'DRIVER={{{config.DB_DRIVER}}}'
     server_str = f'SERVER={config.DB_HOST}'
     database_str = f'DATABASE={config.DB_NAME}'
